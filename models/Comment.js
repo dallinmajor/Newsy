@@ -4,9 +4,10 @@ var Schema = mongoose.Schema;
 
 var CommentSchema = new Schema({
   
-  title: String,
-  // `body` is of type String
-  body: String
+  comment: {
+    type: String,
+    required: true
+  }
 });
 
 // This creates our model from the above schema, using mongoose's model method

@@ -1,9 +1,10 @@
 {{#each article}}
-<div class="article" data-id="{{_id}}">
+<div>
     <h1>{{headline}}</h1>
     <img src="{{image}}" alt="" style="width: 200px">
     <p>{{summary}}</p>
     <a href="{{URL}}">Full Article</a>
 </div>
+<button class="ViewComments" data-id="{{_id}}">View Comments</button>
 <br><br>
 {{/each}}

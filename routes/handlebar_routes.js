@@ -72,14 +72,15 @@ module.exports = function (app, cheerio) {
     })
 
     //a Get Route that when hit...
-    app.get("/articles", function(req, res) {
-        db.Article.find({}).then(function(articles) {
-            res.render("articles", {article: articles})
+    app.get("/articles", function (req, res) {
+
+        //Finds all the articles in the database
+        db.Article.find({}).then(function (articles) {
+
+            //Serves the articles.handlebars with an array of article objects
+            res.render("articles", { article: articles })
         })
     })
-    //Finds all the articles in the database
-    //Serves the articles.handlebars with an array of article objects
-
 }
 
 
