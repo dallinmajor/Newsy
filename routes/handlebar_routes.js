@@ -46,10 +46,14 @@ module.exports = function (app, cheerio) {
                     .attr("href");
 
                 if (article.headline) {
+
+                    //If an Article of that name already exists don't add the articles
                     db.Article.find({ headline: article.headline }).then(function (exists) {
                         if (exists[0]) {
                             return
                         } else {
+
+                            //Create a new Article in the data base
                             db.Article.create(article).then(function (dbArticle) {
                                 console.log(dbArticle);
                             }).catch(function (err) {
@@ -62,6 +66,8 @@ module.exports = function (app, cheerio) {
                 }
             })
         })
+
+        res.render("home")
     })
 }
 
@@ -71,9 +77,9 @@ module.exports = function (app, cheerio) {
 
 
 
-//Create a new Article in the Newsy database
-//Give it the created object
-//If an Article of that name already exists don't add the articles
+
+
+
 
 //Serves up the handlebars homepage
 
