@@ -1,24 +1,7 @@
-var Story = require("./models/story");
-var request = require("request");
+var db = require("../models");
 
-module.exports = function(app, cheerio) {
-    //a Get Route that when hit...
-        //Scrapes NewYork Times webpage for Articles.
-            //For each Article
-                //Create an Object
-                //Give the Object a property of Headline with its value equal to the Articles Title
-                //Give the Object a property of Summary with its value equal to the Artiles Summary
-                //Give the Object a property of URL with its value equal to the href url link of the Article
-
-                //Create a new Article in the Newsy database
-                    //Give it the created object
-                    //If an Article of that name already exists don't add the articles
-
+module.exports = function(app) {
     
-    //a Get Route that when hit...
-        //Finds all the articles in the database
-            //Serves the articles.handlebars with an array of article objects
-
     //a Get Route that takes the id of an article
         // Finds all the comments in connection to that article
         //Returns an array of the comment objects

@@ -13,12 +13,16 @@ var ArticleSchema = new Schema({
     min: [6, "Summary must contain more than 6 characters"]
   },
 
-  URL: String,
+  image: String,
+
+  URL: {
+    type: String,
+    required: true
+  },
 
   comments: {
     type: Schema.Types.ObjectId,
     ref: "Comment",
-    required: true
   }
 });
 
