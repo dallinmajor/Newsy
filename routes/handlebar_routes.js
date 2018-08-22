@@ -37,7 +37,7 @@ module.exports = function (app, cheerio) {
                     .find("picture")
                     .find("source")
                     .attr("data-srcset")
-                
+
                 //Give the Object a property of URL with its value equal to the href url link of the Article 
                 article.URL = URL + $(elm)
                     .find(".headline")
@@ -67,8 +67,19 @@ module.exports = function (app, cheerio) {
             })
         })
 
+        //Serves up the handlebars homepage
         res.render("home")
     })
+
+    //a Get Route that when hit...
+    app.get("/articles", function(req, res) {
+        db.Article.find({}).then(function(articles) {
+            res.render("articles", {article: articles})
+        })
+    })
+    //Finds all the articles in the database
+    //Serves the articles.handlebars with an array of article objects
+
 }
 
 
@@ -81,11 +92,9 @@ module.exports = function (app, cheerio) {
 
 
 
-//Serves up the handlebars homepage
 
 
-//a Get Route that when hit...
-//Finds all the articles in the database
-//Serves the articles.handlebars with an array of article objects
+
+
 
 
