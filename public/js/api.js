@@ -1,5 +1,4 @@
 
-// a Function that takes an article id
 function getArticleComments(article_id) {
 
     // Hits the /articles/api and give it the id number of the article
@@ -14,21 +13,6 @@ function getArticleComments(article_id) {
     })
 }
 
-function poplulateComment(article_id, db_comment) {
-    const { comment, _id } = db_comment;
-
-    const comment_elm = `
-<div id=${_id}>
-    <p class="deleteClick" data-id=${_id}>X</P>
-    <p>${comment}</P>
-    <div data-reply-id${_id}>
-    </div>
-</div>
-`;
-    $(`.comments_section[data-id-comments=${article_id}]`)
-        .prepend(comment_elm);
-};
-
 // a Function that takes a comment object and an article id
 function addComment(article_id, comment_obj) {
 
@@ -40,12 +24,11 @@ function addComment(article_id, comment_obj) {
     })
 }
 
-// a Function that takes the id number of a comment
 function deleteComment(comment_id) {
 
     // hits the api with the id
     $.ajax({
-        url: "/articles/api/delete/" + id,
+        url: "/articles/api/delete/" + comment_id,
         // removes the comment from the database
         method: "DELETE",
     })
@@ -54,31 +37,16 @@ function deleteComment(comment_id) {
     $(`.${comment_id}`).remove();
 }
 
-// a Function that takes the id number of a comment and a object with an edited comment
 function editComment(comment_id, editComment) {
 
-    
+    // hits the api with the id and the object
     $.ajax({
-        url: "/articles/api/comment/" + id,
+
+        // changes the text on the comment
+        url: "/articles/api/comment/" + comment_id,
         type: "PUT",
         data: editComment
     })
-}
 
-
-
-
-
-    
-    // changes the text on the comment
-
-// a Function that takes the id of a comment and a comment object
-    // hits the appi with the id and comment object
-    // handles the returned dbComment obj
-        // Passes it with the original comment id to a function that handles replies
-
-// a Function that handles replies
-    // Takes a comment id and a reply obj
-    //creates a div for the reply
-    // the div has a delete button witht he data-id dqual to the dbReply _id
-    // Appends it to the comment with the id
+    $(`.comment[data-comment-id=${comment_id}`).text(editComment.comment);
+};

@@ -69,7 +69,7 @@ module.exports = function (app, cheerio) {
 
         //Serves up the handlebars homepage
         res.render("home")
-    })
+    });
 
     //a Get Route that when hit...
     app.get("/articles", function (req, res) {

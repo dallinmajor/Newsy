@@ -17,10 +17,9 @@ app.use(express.static("public"));
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 
+
 require("./routes/api_routes")(app);
 require("./routes/handlebar_routes")(app, cheerio);
-
-
 
 app.listen(3000, function () {
     console.log("App running on port 3000!");
