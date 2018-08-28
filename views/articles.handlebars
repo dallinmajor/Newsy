@@ -1,7 +1,7 @@
 <div class="container">
     <div class="jumbotron jumbotron-fluid">
         <div class="container">
-            <h1 class="display-4 text-center">Fluid jumbotron</h1>
+            <h1 class="display-4 text-center">Get Your News Yo!!</h1>
         </div>
     </div>
     {{#each article}}
@@ -32,15 +32,15 @@
                             <label for="addAComment">
                                 <h6>Add Comment</h6>
                             </label>
-                            <textarea class="form-control" id="addAComment" date-article-input="" rows="3"></textarea>
+                            <textarea class="form-control" id="addAComment_{{_id}}" rows="1"></textarea>
                         </div>
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button id="addBtn" type="button" class="btn btn-primary" data-article-button={{_id}}>Submit</button>
                     </form>
                 </div>
                 <div class="text-center">
-                    <a href="#" class="btn btn-primary" data-article-id="{{_id}}">View Comments</a>
+                    <button class="btn btn-primary" id="ViewComments" data-comment-ids={{comments}} data-article-id={{_id}}>View Comments</button>
                 </div>
-                <div id="comments_box" data-id-comments={{_id}}></div>
+                <div id="comments_box_{{_id}}"></div>
             </div>
         </div>
     </div>

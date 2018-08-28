@@ -2,36 +2,34 @@ var db = require("../models");
 
 module.exports = function (app) {
 
-    app.get("/api/article/comments:id", function (req, res) {
+    app.get("/api/article/comments/:id", function (req, res) {
+        
+        db.Comment.find({ article: req.params.id}).then(function(comments) {
+            res.send(comments);
+        })  
+    });
 
-        // Finds all the comments in connection to that article
-        db.Article.findById(req.params.id)
-            .populate("Comment")
-            .then(function (comments) {
-                res.send(comments);
+    app.delete("/articles/api/delete/:id", function (req, res) {
+
+        db.Comment.findByIdAndRemove({ _id: req.params.id })
+            .then(function () {
+                console.log('deleted');
             });
     });
 
-
-    app.put("/api/edit/:id", function (req, res) {
-
-
-        db.Comment.findOneAndUpdate({ _id: req.params.id }, { $set: { comment: req.body.comment } });
-    })
+    app.post("/articles/api/insert/:id", function (req, res) {
 
 
-    app.delete("/api/delete/:id", function (req, res) {
-
-
-        db.Comment.findByIdAndRemove({ _id: req.params.id });
     });
 
-    app.post("/api/reply/:id", function (req, res) {
+    app.post("/articles/api/comment/:id", function (req, res) {
 
         db.Comment.create(req.body)
             .then(function (dbcomment) {
-
-                db.Comment.findOneAndUpdate({ _id: req.params.id }, { replys: dbcomment._id }, { new: true });
+                db.Article.findOneAndUpdate({ _id: req.params.id }, { $push: { comments: [dbcomment._id] } }).then(function (result) {
+                    console.log(result);
+                });
+                res.send(dbcomment);
             });
     });
 };

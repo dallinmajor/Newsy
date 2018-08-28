@@ -8,11 +8,7 @@ var CommentSchema = new Schema({
     type: String,
     required: true
   },
-
-  replys: [{
-    type: Schema.Types.ObjectId,
-    ref: "Comment",
-  }]
+  article: String,
 });
 
 // This creates our model from the above schema, using mongoose's model method
