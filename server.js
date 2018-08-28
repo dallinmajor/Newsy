@@ -6,7 +6,7 @@ var cheerio = require("cheerio");
 var app = express();
 var exphbs = require("express-handlebars");
 
-var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/News";
+var MONGODB_URI = process.env.MONGODB_URI || "mongodb://heroku_d2d50xpv:g9vm178sauutr6p1a72398o6c0";
 
 mongoose.Promise = Promise;
 mongoose.connect(MONGODB_URI);
