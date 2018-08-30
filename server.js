@@ -2,6 +2,7 @@ var express = require("express");
 var bodyParser = require("body-parser");
 var mongoose = require("mongoose");
 var cheerio = require("cheerio");
+var PORT = process.env.PORT || 3000;
 
 var app = express();
 var exphbs = require("express-handlebars");
@@ -21,6 +22,6 @@ app.set("view engine", "handlebars");
 require("./routes/api_routes")(app);
 require("./routes/handlebar_routes")(app, cheerio);
 
-app.listen(3000, function () {
+app.listen(PORT, function () {
     console.log("App running on port 3000!");
 });
